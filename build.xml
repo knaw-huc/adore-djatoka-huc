@@ -24,7 +24,7 @@
 
   <!-- environment variables -->
   <property environment="env"/>
-  <property name="version" value="1.1" />
+  <property name="version" value="1.1.1-huc" />
 
   <!-- source/build directory -->
   <property name="bin.dir"      value="${basedir}/bin"/>
@@ -65,7 +65,7 @@
   <target name="compile" depends="prepare" description="Compile Java source files">
     <javac srcdir="${src.dir}"
            destdir="${build.dir}/classes"
-           source="1.5"
+           source="8"
            optimize="${optimize}"
            nowarn="${nowarn}"
            debug="${debug}">
