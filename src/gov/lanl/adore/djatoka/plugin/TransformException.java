@@ -18,7 +18,7 @@
  * You should have received a copy of the GNU Lesser General Public
  * License along with this library; if not, write to the Free Software
  * Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA 02110-1301 USA
- * 
+ *
  */
 
 package gov.lanl.adore.djatoka.plugin;
@@ -26,15 +26,13 @@ package gov.lanl.adore.djatoka.plugin;
 import gov.lanl.adore.djatoka.DjatokaException;
 
 /**
- * 
  * @author Ryan Chute
- *
  */
 public class TransformException extends DjatokaException {
-	
-	private static final long serialVersionUID = -3452607688194996388L;
 
-	public TransformException(String message) {
+    private static final long serialVersionUID = -3452607688194996388L;
+
+    public TransformException(String message) {
         super(message);
     }
 

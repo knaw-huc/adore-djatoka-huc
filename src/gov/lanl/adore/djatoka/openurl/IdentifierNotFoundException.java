@@ -18,20 +18,20 @@
  * You should have received a copy of the GNU Lesser General Public
  * License along with this library; if not, write to the Free Software
  * Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA 02110-1301 USA
- * 
+ *
  */
 
 package gov.lanl.adore.djatoka.openurl;
 
 /**
  * Identifier Not Found Exception Handler
- * @author Ryan Chute
  *
+ * @author Ryan Chute
  */
 public class IdentifierNotFoundException extends ResolverException {
-	private static final long serialVersionUID = 5668199623801201337L;
+    private static final long serialVersionUID = 5668199623801201337L;
 
-	public IdentifierNotFoundException(String message) {
+    public IdentifierNotFoundException(String message) {
         super(message);
     }
 

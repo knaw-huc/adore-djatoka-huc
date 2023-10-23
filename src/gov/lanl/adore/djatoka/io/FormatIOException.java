@@ -18,7 +18,7 @@
  * You should have received a copy of the GNU Lesser General Public
  * License along with this library; if not, write to the Free Software
  * Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA 02110-1301 USA
- * 
+ *
  */
 
 package gov.lanl.adore.djatoka.io;
@@ -27,14 +27,14 @@ import gov.lanl.adore.djatoka.DjatokaException;
 
 /**
  * Exception handler used during Format I/O operations.
- * @author Ryan Chute
  *
+ * @author Ryan Chute
  */
 public class FormatIOException extends DjatokaException {
 
-	private static final long serialVersionUID = 1307882022387500079L;
+    private static final long serialVersionUID = 1307882022387500079L;
 
-	public FormatIOException(String message) {
+    public FormatIOException(String message) {
         super(message);
     }
 

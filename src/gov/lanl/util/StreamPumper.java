@@ -23,6 +23,7 @@ import java.io.OutputStream;
 
 // MODIFIED FROM ANT CVS HEAD:
 //    http://cvs.apache.org/viewcvs.cgi/ant/src/main/org/apache/tools/ant/taskdefs/
+
 /**
  * Copies all data from an input stream to an output stream.
  *
@@ -44,10 +45,10 @@ public class StreamPumper implements Runnable {
     /**
      * Create a new stream pumper.
      *
-     * @param is input stream to read data from
-     * @param os output stream to write data to.
+     * @param is                 input stream to read data from
+     * @param os                 output stream to write data to.
      * @param closeWhenExhausted if true, the output stream will be closed when
-     *        the input is exhausted.
+     *                           the input is exhausted.
      */
     public StreamPumper(InputStream is, OutputStream os,
                         boolean closeWhenExhausted) {
@@ -68,6 +69,7 @@ public class StreamPumper implements Runnable {
 
     /**
      * Set whether data should be flushed through to the output stream.
+     *
      * @param autoflush if true, push through data; if false, let it be buffered
      * @since Ant 1.6.3
      */
@@ -77,7 +79,7 @@ public class StreamPumper implements Runnable {
 
     /**
      * Copies data from the input stream to the output stream.
-     *
+     * <p>
      * Terminates as soon as the input stream is closed or an error occurs.
      */
     public void run() {
@@ -114,6 +116,7 @@ public class StreamPumper implements Runnable {
 
     /**
      * Tells whether the end of the stream has been reached.
+     *
      * @return true is the stream has been exhausted.
      **/
     public boolean isFinished() {
@@ -122,10 +125,11 @@ public class StreamPumper implements Runnable {
 
     /**
      * This method blocks until the stream pumper finishes.
+     *
      * @see #isFinished()
      **/
     public synchronized void waitFor()
-        throws InterruptedException {
+            throws InterruptedException {
         while (!isFinished()) {
             wait();
         }
@@ -136,9 +140,11 @@ public class StreamPumper implements Runnable {
      * Note that it may continue to block on the input stream
      * but it will really stop the thread as soon as it gets EOF
      * or any byte, and it will be marked as finished.
+     *
      * @since Ant 1.6.3
      */
-    /*package*/ synchronized void stop() {
+    /*package*/
+    synchronized void stop() {
         finish = true;
         notifyAll();
     }

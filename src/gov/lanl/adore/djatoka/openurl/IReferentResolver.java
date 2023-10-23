@@ -18,55 +18,59 @@
  * You should have received a copy of the GNU Lesser General Public
  * License along with this library; if not, write to the Free Software
  * Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA 02110-1301 USA
- * 
+ *
  */
 
 package gov.lanl.adore.djatoka.openurl;
 
 import java.util.Properties;
 
-import gov.lanl.adore.djatoka.util.ImageRecord;
 import info.openurl.oom.entities.Referent;
 
+import gov.lanl.adore.djatoka.util.ImageRecord;
+
 /**
- * Interface for OpenURL Referent Resolution.  
- * @author Ryan Chute
+ * Interface for OpenURL Referent Resolution.
  *
+ * @author Ryan Chute
  */
 public interface IReferentResolver {
-	
-	/**
-	 * Referent Identifier to be resolved from Identifier Resolver. The returned
-	 * ImageRecord need only contain the imageId and image file path.
-	 * @param rftId identifier of the image to be resolved
-	 * @return ImageRecord instance containing resolvable metadata
-	 * @throws ResolverException
-	 */
-	public ImageRecord getImageRecord(String rftId) throws ResolverException;
-	
-	/**
-	 * Referent to be resolved from Identifier Resolver. The returned
-	 * ImageRecord need only contain the imageId and image file path.
-	 * @param rft an OpenURL OOM Referent instance to be used to resolved image.
-	 * @return ImageRecord instance containing resolvable metadata
-	 * @throws ResolverException
-	 */
-	public ImageRecord getImageRecord(Referent rft) throws ResolverException;
-	
-	/**
-	 * Sets a Properties object that may be used by underlying implementation
-	 * @param props Properties object for use by implementation
-	 * @throws ResolverException
-	 */
-	public void setProperties(Properties props) throws ResolverException;
-	
-	/**
-	 * Gets the djatoka HttpServletResponse status for the requested resource
-	 */
-	public int getStatus(String rftId);
-	
-	/**
-	 * Gets the resolver's active resource migrator.
-	 */
-	public IReferentMigrator getReferentMigrator();
+
+    /**
+     * Referent Identifier to be resolved from Identifier Resolver. The returned
+     * ImageRecord need only contain the imageId and image file path.
+     *
+     * @param rftId identifier of the image to be resolved
+     * @return ImageRecord instance containing resolvable metadata
+     * @throws ResolverException
+     */
+    public ImageRecord getImageRecord(String rftId) throws ResolverException;
+
+    /**
+     * Referent to be resolved from Identifier Resolver. The returned
+     * ImageRecord need only contain the imageId and image file path.
+     *
+     * @param rft an OpenURL OOM Referent instance to be used to resolved image.
+     * @return ImageRecord instance containing resolvable metadata
+     * @throws ResolverException
+     */
+    public ImageRecord getImageRecord(Referent rft) throws ResolverException;
+
+    /**
+     * Sets a Properties object that may be used by underlying implementation
+     *
+     * @param props Properties object for use by implementation
+     * @throws ResolverException
+     */
+    public void setProperties(Properties props) throws ResolverException;
+
+    /**
+     * Gets the djatoka HttpServletResponse status for the requested resource
+     */
+    public int getStatus(String rftId);
+
+    /**
+     * Gets the resolver's active resource migrator.
+     */
+    public IReferentMigrator getReferentMigrator();
 }

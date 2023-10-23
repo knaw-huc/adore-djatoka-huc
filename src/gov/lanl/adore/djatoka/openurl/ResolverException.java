@@ -18,7 +18,7 @@
  * You should have received a copy of the GNU Lesser General Public
  * License along with this library; if not, write to the Free Software
  * Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA 02110-1301 USA
- * 
+ *
  */
 
 package gov.lanl.adore.djatoka.openurl;
@@ -27,8 +27,8 @@ import gov.lanl.adore.djatoka.DjatokaException;
 
 /**
  * General Resolver Exception Handler
- * @author Ryan Chute
  *
+ * @author Ryan Chute
  */
 public class ResolverException extends DjatokaException {
     private static final long serialVersionUID = 6532963984240949392L;

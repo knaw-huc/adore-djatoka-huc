@@ -18,17 +18,17 @@
  * You should have received a copy of the GNU Lesser General Public
  * License along with this library; if not, write to the Free Software
  * Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA 02110-1301 USA
- * 
+ *
  */
 
 package gov.lanl.adore.djatoka.util;
 
+import javax.media.jai.JAI;
+import javax.media.jai.PlanarImage;
+
 import ij.ImagePlus;
 import ij.io.Opener;
 import ij.process.ImageProcessor;
-
-import javax.media.jai.JAI;
-import javax.media.jai.PlanarImage;
 
 /**
  * Image Information Utility used to obtain width and height information.
@@ -37,47 +37,48 @@ import javax.media.jai.PlanarImage;
  * compressed is opened by either ImageJ or JAI and determines dimensions.
  * JAI is better with TIFF files and and file extensions are used to
  * determine which API will be used to resolve dimensions.
- * @author Ryan Chute
  *
+ * @author Ryan Chute
  */
 public class ImageRecordUtils {
-	
-	/**
-	 * Return an ImageRecord containing the images pixel dimensions.
-	 * @param file absolute file path to image
-	 * @return ImageRecord containing the images pixel dimensions
-	 */
-	public static ImageRecord getImageDimensions(String file) {
-		ImageRecord dim = null;
-		// try JAI
-		dim = setUsingJAI(file);
-		// if that fails, try ImageJ
-		if (dim == null)
-			dim = setUsingImageJ(file);
-		return dim;
-	}
-	
-	private static ImageRecord setUsingImageJ(String file) {
-		ImageRecord dim = new ImageRecord(file);
-		Opener o = new Opener();
-		ImagePlus imp = o.openImage(file);
-		if (imp == null)
-			return null;
-		ImageProcessor ip = imp.getProcessor();
-		dim.setWidth(ip.getWidth());
-		dim.setHeight(ip.getHeight());
-		ip = null;
-		return dim;
-	}
-	
-	private static ImageRecord setUsingJAI(String file) {
-		ImageRecord dim = new ImageRecord(file);
-		PlanarImage pi = JAI.create("fileload", file);
-		dim.setWidth(pi.getWidth());
-		dim.setHeight(pi.getHeight());
-		pi.dispose();
-		pi = null;
-		return dim;
-	}
+
+    /**
+     * Return an ImageRecord containing the images pixel dimensions.
+     *
+     * @param file absolute file path to image
+     * @return ImageRecord containing the images pixel dimensions
+     */
+    public static ImageRecord getImageDimensions(String file) {
+        ImageRecord dim = null;
+        // try JAI
+        dim = setUsingJAI(file);
+        // if that fails, try ImageJ
+        if (dim == null)
+            dim = setUsingImageJ(file);
+        return dim;
+    }
+
+    private static ImageRecord setUsingImageJ(String file) {
+        ImageRecord dim = new ImageRecord(file);
+        Opener o = new Opener();
+        ImagePlus imp = o.openImage(file);
+        if (imp == null)
+            return null;
+        ImageProcessor ip = imp.getProcessor();
+        dim.setWidth(ip.getWidth());
+        dim.setHeight(ip.getHeight());
+        ip = null;
+        return dim;
+    }
+
+    private static ImageRecord setUsingJAI(String file) {
+        ImageRecord dim = new ImageRecord(file);
+        PlanarImage pi = JAI.create("fileload", file);
+        dim.setWidth(pi.getWidth());
+        dim.setHeight(pi.getHeight());
+        pi.dispose();
+        pi = null;
+        return dim;
+    }
 }
 

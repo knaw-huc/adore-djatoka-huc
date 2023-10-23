@@ -18,53 +18,54 @@
  * You should have received a copy of the GNU Lesser General Public
  * License along with this library; if not, write to the Free Software
  * Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA 02110-1301 USA
- * 
+ *
  */
 
 package gov.lanl.adore.djatoka.io.writer;
 
-import gov.lanl.adore.djatoka.io.FormatIOException;
-import gov.lanl.adore.djatoka.io.IWriter;
-
+import javax.imageio.ImageIO;
 import java.awt.image.BufferedImage;
 import java.io.BufferedOutputStream;
 import java.io.IOException;
 import java.io.OutputStream;
 import java.util.Properties;
 
-import javax.imageio.ImageIO;
-
 import org.apache.log4j.Logger;
+
+import gov.lanl.adore.djatoka.io.FormatIOException;
+import gov.lanl.adore.djatoka.io.IWriter;
 
 /**
  * PNG File Writer. Uses JAI Image I/O to write BufferedImage as PNG
- * @author Ryan Chute
  *
+ * @author Ryan Chute
  */
 public class PNGWriter implements IWriter {
-	static Logger logger = Logger.getLogger(PNGWriter.class);
-	/**
-	 * Write a BufferedImage instance using implementation to the 
-	 * provided OutputStream.
-	 * @param bi a BufferedImage instance to be serialized
-	 * @param os OutputStream to output the image to
-	 * @throws FormatIOException
-	 */
-	public void write(BufferedImage bi, OutputStream os) throws FormatIOException {
-		if (bi != null) {
-			BufferedOutputStream bos = null;
-			try {
-				bos = new BufferedOutputStream(os);
-				ImageIO.write(bi, "png", bos);
-			} catch (IOException e) {
-				logger.error(e,e);
-			}
-		}
-	}
-	
-	/**
-	 * NOT SUPPORTED.
-	 */
-	public void setWriterProperties(Properties props) {
-	}
+    static Logger logger = Logger.getLogger(PNGWriter.class);
+
+    /**
+     * Write a BufferedImage instance using implementation to the
+     * provided OutputStream.
+     *
+     * @param bi a BufferedImage instance to be serialized
+     * @param os OutputStream to output the image to
+     * @throws FormatIOException
+     */
+    public void write(BufferedImage bi, OutputStream os) throws FormatIOException {
+        if (bi != null) {
+            BufferedOutputStream bos = null;
+            try {
+                bos = new BufferedOutputStream(os);
+                ImageIO.write(bi, "png", bos);
+            } catch (IOException e) {
+                logger.error(e, e);
+            }
+        }
+    }
+
+    /**
+     * NOT SUPPORTED.
+     */
+    public void setWriterProperties(Properties props) {
+    }
 }

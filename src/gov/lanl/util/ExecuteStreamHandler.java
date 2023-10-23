@@ -23,6 +23,7 @@ import java.io.OutputStream;
 
 // MODIFIED FROM ANT CVS HEAD:
 //    http://cvs.apache.org/viewcvs.cgi/ant/src/main/org/apache/tools/ant/taskdefs/
+
 /**
  * Used by <code>Execute</code> to handle input and output stream of
  * subprocesses.
@@ -58,6 +59,7 @@ public interface ExecuteStreamHandler {
 
     /**
      * Start handling of the streams.
+     *
      * @throws IOException on error
      */
     void start() throws IOException;

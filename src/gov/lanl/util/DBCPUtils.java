@@ -18,17 +18,14 @@
  * You should have received a copy of the GNU Lesser General Public
  * License along with this library; if not, write to the Free Software
  * Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA 02110-1301 USA
- * 
+ *
  */
 
 package gov.lanl.util;
 
-import gov.lanl.adore.djatoka.openurl.ResolverException;
-
+import javax.sql.DataSource;
 import java.util.Date;
 import java.util.Properties;
-
-import javax.sql.DataSource;
 
 import org.apache.commons.dbcp.ConnectionFactory;
 import org.apache.commons.dbcp.DriverManagerConnectionFactory;
@@ -37,68 +34,72 @@ import org.apache.commons.dbcp.PoolingDataSource;
 import org.apache.commons.pool.impl.GenericObjectPool;
 import org.apache.log4j.Logger;
 
+import gov.lanl.adore.djatoka.openurl.ResolverException;
+
 /**
  * DBCP / JDBC Utilities Wrapper
- * @author Ryan Chute
  *
+ * @author Ryan Chute
  */
 public class DBCPUtils {
-	static Logger log = Logger.getLogger(DBCPUtils.class.getName());
-	
-	/**
-	 * Set-up a DBCP DataSource from a properties object. Uses a properties 
-	 * key prefix to identify the properties associated with profile.  If 
-	 * a database profile has a prefix of djatoka, the props object would 
-	 * contain the following pairs:
-	 * djatoka.url=jdbc:mysql://localhost/djatoka
+    static Logger log = Logger.getLogger(DBCPUtils.class.getName());
+
+    /**
+     * Set-up a DBCP DataSource from a properties object. Uses a properties
+     * key prefix to identify the properties associated with profile.  If
+     * a database profile has a prefix of djatoka, the props object would
+     * contain the following pairs:
+     * djatoka.url=jdbc:mysql://localhost/djatoka
      * djatoka.driver=com.mysql.jdbc.Driver
      * djatoka.login=root
      * djatoka.pwd=
      * djatoka.maxActive=50
      * djatoka.maxIdle=10
-     * @param dbid database profile properties file prefix
+     *
+     * @param dbid  database profile properties file prefix
      * @param props properties object containing relevant pairs
-	 */
-	public static DataSource setupDataSource(String dbid, Properties props) throws Exception {
-		String url = props.getProperty(dbid + ".url");
-		String driver = props.getProperty(dbid + ".driver");
-		String login = props.getProperty(dbid + ".login");
-		String pwd = props.getProperty(dbid + ".pwd");
-		int maxActive = 50;
-		if (props.containsKey(dbid + ".maxActive"))
-		    maxActive = Integer.parseInt(props.getProperty(dbid + ".maxActive"));
-		int maxIdle = 10;
-		if (props.containsKey(dbid + ".maxIdle"))
-		    maxIdle = Integer.parseInt(props.getProperty(dbid + ".maxIdle"));
-		log.debug(url + ";" + driver + ";" + login + ";" + pwd + ";" + maxActive + ";" + maxIdle);
-		return setupDataSource(url, driver, login, pwd, maxActive, maxIdle);
-	}
+     */
+    public static DataSource setupDataSource(String dbid, Properties props) throws Exception {
+        String url = props.getProperty(dbid + ".url");
+        String driver = props.getProperty(dbid + ".driver");
+        String login = props.getProperty(dbid + ".login");
+        String pwd = props.getProperty(dbid + ".pwd");
+        int maxActive = 50;
+        if (props.containsKey(dbid + ".maxActive"))
+            maxActive = Integer.parseInt(props.getProperty(dbid + ".maxActive"));
+        int maxIdle = 10;
+        if (props.containsKey(dbid + ".maxIdle"))
+            maxIdle = Integer.parseInt(props.getProperty(dbid + ".maxIdle"));
+        log.debug(url + ";" + driver + ";" + login + ";" + pwd + ";" + maxActive + ";" + maxIdle);
+        return setupDataSource(url, driver, login, pwd, maxActive, maxIdle);
+    }
 
-	/**
-	 * Set-up a DBCP DataSource from core connection properties.
-	 * @param connectURI jdbc connection uri
-	 * @param jdbcDriverName qualified classpath to jdbc driver for database
-	 * @param username database user account
-	 * @param password database password
-	 * @param maxActive max simultaneous db connections (default: 50)
-	 * @param maxIdle max idle db connections (default: 10)
-	 */
-	public static DataSource setupDataSource(String connectURI,
-			String jdbcDriverName, String username, String password, int maxActive, int maxIdle) throws Exception{
-		try {
-			java.lang.Class.forName(jdbcDriverName).newInstance();
-		} catch (Exception e) {
-			log.error("Error when attempting to obtain DB Driver: "
-					+ jdbcDriverName + " on " + new Date().toString(), e);
-			throw new ResolverException(e);
-		}
+    /**
+     * Set-up a DBCP DataSource from core connection properties.
+     *
+     * @param connectURI     jdbc connection uri
+     * @param jdbcDriverName qualified classpath to jdbc driver for database
+     * @param username       database user account
+     * @param password       database password
+     * @param maxActive      max simultaneous db connections (default: 50)
+     * @param maxIdle        max idle db connections (default: 10)
+     */
+    public static DataSource setupDataSource(String connectURI,
+                                             String jdbcDriverName, String username, String password, int maxActive, int maxIdle) throws Exception {
+        try {
+            java.lang.Class.forName(jdbcDriverName).newInstance();
+        } catch (Exception e) {
+            log.error("Error when attempting to obtain DB Driver: "
+                    + jdbcDriverName + " on " + new Date().toString(), e);
+            throw new ResolverException(e);
+        }
 
-		if (maxActive <= 0)
-			maxActive = 50;
-		if (maxIdle <= 0)
-			maxIdle = 10;
-		
-		GenericObjectPool connectionPool = new GenericObjectPool(
+        if (maxActive <= 0)
+            maxActive = 50;
+        if (maxIdle <= 0)
+            maxIdle = 10;
+
+        GenericObjectPool connectionPool = new GenericObjectPool(
                 null, // PoolableObjectFactory, can be null
                 maxActive, // max active
                 GenericObjectPool.WHEN_EXHAUSTED_BLOCK, // action when exhausted
@@ -110,16 +111,16 @@ public class DBCPUtils {
                 5, // number to test on eviction run
                 30000, // min evictable idle time (millis)
                 true // test while idle
-                );
-		
-		ConnectionFactory connectionFactory = new DriverManagerConnectionFactory(
-				connectURI, username, password);
+        );
 
-		PoolableConnectionFactory poolableConnectionFactory = new PoolableConnectionFactory(
-				connectionFactory, connectionPool, null, null, false, true);
+        ConnectionFactory connectionFactory = new DriverManagerConnectionFactory(
+                connectURI, username, password);
 
-		PoolingDataSource dataSource = new PoolingDataSource(connectionPool);
+        PoolableConnectionFactory poolableConnectionFactory = new PoolableConnectionFactory(
+                connectionFactory, connectionPool, null, null, false, true);
 
-		return dataSource;
-	}
+        PoolingDataSource dataSource = new PoolingDataSource(connectionPool);
+
+        return dataSource;
+    }
 }

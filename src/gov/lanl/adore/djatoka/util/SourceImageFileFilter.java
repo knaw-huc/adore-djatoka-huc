@@ -18,7 +18,7 @@
  * You should have received a copy of the GNU Lesser General Public
  * License along with this library; if not, write to the Free Software
  * Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA 02110-1301 USA
- * 
+ *
  */
 
 package gov.lanl.adore.djatoka.util;
@@ -29,12 +29,12 @@ public class SourceImageFileFilter implements java.io.FileFilter {
     public boolean accept(File f) {
         if (f.isDirectory()) return true;
         String n = f.getName().toLowerCase();
-        return n.endsWith("tif") 
-           ||  n.endsWith("tiff")
-           ||  n.endsWith("jpg")
-           ||  n.endsWith("jpeg")
-           ||  n.endsWith("png")
-           ||  n.endsWith("gif")
-           ||  n.endsWith("bmp");
+        return n.endsWith("tif")
+                || n.endsWith("tiff")
+                || n.endsWith("jpg")
+                || n.endsWith("jpeg")
+                || n.endsWith("png")
+                || n.endsWith("gif")
+                || n.endsWith("bmp");
     }
 }
