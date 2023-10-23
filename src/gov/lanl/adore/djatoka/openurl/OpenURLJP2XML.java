@@ -100,7 +100,6 @@ public class OpenURLJP2XML implements Service, FormatConstants {
                                    OpenURLRequestProcessor processor) {
 
         String responseFormat = "application/xml";
-        ;
         int status = HttpServletResponse.SC_OK;
         ByteArrayOutputStream baos = new ByteArrayOutputStream();
         try {

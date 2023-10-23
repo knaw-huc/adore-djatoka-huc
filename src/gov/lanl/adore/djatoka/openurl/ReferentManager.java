@@ -42,8 +42,6 @@ public class ReferentManager {
     private ReferentManager() {
     }
 
-    ;
-
     /**
      * Gets the underlying IReferentResolver impl.
      *

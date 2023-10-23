@@ -182,7 +182,6 @@ public class SimpleListResolver implements IReferentResolver {
                     return false;
                 }
 
-                ;
             };
         } catch (Exception e) {
             logger.error(e, e);

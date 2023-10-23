@@ -99,7 +99,6 @@ public class OpenURLJP2Datastream implements Service, FormatConstants {
                                    OpenURLRequestProcessor processor) {
 
         String responseFormat = "application/jp2";
-        ;
         int status = HttpServletResponse.SC_OK;
         byte[] b = null;
         try {

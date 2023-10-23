@@ -154,7 +154,6 @@ public class DatabaseResolver implements IReferentResolver {
                 return false;
             }
 
-            ;
         });
 
         query = props.getProperty(DEFAULT_DBID + ".query");

@@ -66,7 +66,6 @@ public class TileCacheManager<K, V> {
                 return false;
             }
 
-            ;
         };
     }
 

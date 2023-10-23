@@ -50,8 +50,6 @@ public class ImageRecord {
     public ImageRecord() {
     }
 
-    ;
-
     /**
      * Constructor used to prime imageFile value
      *
