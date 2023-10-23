@@ -210,7 +210,7 @@ public class GIFWriter implements IWriter {
 		            colorTab[k+1] = (byte)m.getGreen(i);
 		            colorTab[k+2] = (byte)m.getBlue(i);
 		        }
-		        m.finalize();
+//		        m.finalize();
 		  
 		 }     
 
