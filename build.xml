@@ -66,6 +66,7 @@
         <javac srcdir="${src.dir}"
                destdir="${build.dir}/classes"
                source="1.8"
+               target="1.8"
                optimize="${optimize}"
                nowarn="${nowarn}"
                debug="${debug}">
