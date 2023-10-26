@@ -21,6 +21,7 @@ import java.io.InputStream;
 import java.io.OutputStream;
 import java.net.SocketException;
 import java.net.URL;
+import java.util.Arrays;
 import java.util.Iterator;
 import java.util.Map;
 import java.util.Map.Entry;
@@ -53,7 +54,6 @@ public class OpenURLServlet extends HttpServlet {
 
     public void init(ServletConfig config) throws ServletException {
         super.init(config);
-
         try {
             // load the configuration file from the classpath
             openURLConfig = new org.oclc.oomRef.config.OpenURLConfig(config);
@@ -94,21 +94,31 @@ public class OpenURLServlet extends HttpServlet {
                         "Invalid Request");
                 return;
             }
+
+            // 2023-10-26 bramb block access to urls other than those starting with http://localhost:8080/jp2/*
+            Object[] descriptors = openURLRequest.getContextObjects()[0].getReferent().getDescriptors();
+            for (int i = 0; i < descriptors.length; ++i) {
+                String url = ((java.net.URI) descriptors[i]).toASCIIString();
+                if (!url.startsWith("http://localhost:8080/jp2/")) {
+                    logger.error("illegal rft_id: " + url + " ; only http://localhost:8080/jp2/ are allowed");
+                    resp.sendError(HttpServletResponse.SC_FORBIDDEN);
+                    return;
+                }
+            }
+
             // 2009-05-06: rchute Add AccessManager Support
             if (am != null) {
+                String url = ((java.net.URI) openURLRequest.getContextObjects()[0].getReferent().getDescriptors()[0]).toASCIIString();
                 try {
-                    String url = ((java.net.URI) openURLRequest.getContextObjects()[0].getReferent().getDescriptors()[0]).toASCIIString();
                     if (url.startsWith("http") || url.startsWith("ftp")) {
                         if (!am.checkAccess(new URL(url).getHost())) {
-                            int status = HttpServletResponse.SC_FORBIDDEN;
-                            resp.sendError(status);
+                            resp.sendError(HttpServletResponse.SC_FORBIDDEN);
                             return;
                         }
                     }
                 } catch (Exception e) {
                     logger.error(e);
                 }
-
             }
 
             // rchute: Add referrer for possible extension processing
