@@ -1,0 +1,112 @@
+a#logo {
+	display: none;
+}
+
+div#navcontainer {
+	right: auto;
+	left: 10px;
+}
+
+div#navcontainer div#toolbar {
+	opacity: 0.3;
+	cursor: N-resize;
+	cursor: grab;
+	cursor: -webkit-grab;
+	cursor: -moz-grab;
+	transition: opacity 500ms;
+}
+
+div#navcontainer div#toolbar:hover {
+	opacity: 1;
+}
+
+div#targetframe {
+	background: white;
+	border: 0;
+}
+
+img#snapshot {
+	display: none;
+}
+
+div#openNavBox {
+	padding-right: 4px;
+	border-bottom-right-radius: 13px;
+	box-shadow: 1px 1px 4px #575757;
+}
+
+div#navbuttons {
+	position: relative;
+	opacity: 0.2;
+	border-bottom-left-radius: 10px;
+	border-bottom-right-radius: 10px;
+	transition: opacity 500ms;
+	height: 56px;
+	min-width: 110px;
+}
+
+div#navbuttons img {
+	opacity: 0.4;
+	position: absolute;
+	margin: 0;
+}
+
+div#navbuttons img#shiftLeft {
+	top: 21px;
+	left: 4px;
+	margin: 0;
+}
+
+div#navbuttons img#shiftUp {
+	top: 4px;
+	left: 22px;
+	margin: 0;
+}
+
+div#navbuttons img#shiftRight {
+	top: 21px;
+	left: 39px;
+	margin: 0;
+}
+
+div#navbuttons img#shiftDown {
+	top: 38px;
+	left: 22px;
+	margin: 0;
+}
+
+div#navbuttons img#zoomIn {
+	top: 4px;
+	left: 64px;
+	margin: 0;
+}
+
+div#navbuttons img#zoomOut {
+	left: 64px;
+	top: 38px;
+	margin: 0;
+}
+
+div#navbuttons img#reset {
+	right: 4px;
+	top: 38px;
+	margin: 0;
+}
+
+div#navbuttons img#closeNavBox {
+	top: 4px;
+	right: 4px;
+	margin: 0;
+}
+
+div#navbuttons:hover {
+	opacity: 0.6;
+}
+
+div#navbuttons:hover img {
+	opacity: 0.9;
+}
+
+div#navwin {
+	box-shadow: 0 0 6px #222;
+}

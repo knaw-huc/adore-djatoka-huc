@@ -1,0 +1,92 @@
+body,.images {
+	background-color: #000
+}
+
+.images {
+	float: left;
+	height: 98%;
+	padding: 10px;
+	width: 98%
+}
+
+.images .caption,.images .copyright,.images .newImage {
+	color: #999;
+	font-size: 9pt
+}
+
+.images .caption,.images .copyright {
+	border-top: solid 1px #000;
+	padding-bottom: 7px;
+	text-align: center;
+	width: 176px
+}
+
+.images .imageSingle {
+	border: solid 1px #333;
+	float: left;
+	margin: 5px;
+	text-align: center;
+	width: 176px
+}
+
+.images .imageSingle .image {
+	height: 115px;
+	margin: 3px;
+	width: 150px
+}
+
+.images .caption {
+	height: 25px;
+	margin-top: 10px
+}
+
+.images .copyright {
+	height: 10px
+}
+
+.images .newImage {
+	float: left;
+	height: 25px;
+	margin: 5px;
+	text-align: left;
+	width: 100%
+}
+
+a.button {
+	background: transparent url(../images/button.gif) no-repeat scroll top
+		right;
+	color: #444;
+	display: block;
+	float: left;
+	font: normal 12px arial, sans-serif;
+	height: 24px;
+	margin-right: 6px;
+	padding-right: 18px;
+	text-decoration: none
+}
+
+a.button span {
+	background: transparent url(../images/button_span.gif) no-repeat;
+	display: block;
+	line-height: 14px;
+	padding: 5px 0 5px 18px
+}
+
+a.button:active {
+	background-position: bottom right;
+	color: #000;
+	outline: none
+}
+
+a.button:active span {
+	background-position: bottom left;
+	padding: 6px 0 4px 18px
+}
+
+a:link img,a:visited img {
+	border-color: #000
+}
+
+a:hover img {
+	border-color: #333
+}
