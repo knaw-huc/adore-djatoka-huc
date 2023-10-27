@@ -1,3 +1,8 @@
+This is a patched version of djatoka to fix a Server Side Request Forgery vulnerability.
+For use on the Huygens ING tomcat only!
+
+original readme:
+--------------------
 Dear User,
 
 Accompanying this message is a copy of the latest version of the djatoka software, including Kakadu-based JPEG 2000 compression and extraction software.  The Kakadu Libraries and KDU executables are provided for NON-COMMERCIAL USE ONLY.  
