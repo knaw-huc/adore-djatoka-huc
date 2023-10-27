@@ -65,8 +65,8 @@
     <target name="compile" depends="prepare" description="Compile Java source files">
         <javac srcdir="${src.dir}"
                destdir="${build.dir}/classes"
-               source="1.8"
-               target="1.8"
+               source="1.6"
+               target="1.6"
                optimize="${optimize}"
                nowarn="${nowarn}"
                debug="${debug}">
@@ -99,6 +99,7 @@
             <lib dir="${lib.dir}">
                 <include name="*.jar"/>
                 <exclude name="servlet-api.jar"/>
+                <exclude name="adore-djatoka-${version}.jar"/>
             </lib>
         </war>
         <tar destfile="adore-djatoka-${version}.tar.gz" compression="gzip">
