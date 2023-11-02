@@ -412,7 +412,7 @@ var IIP = new Class(
 								}
 							});
 
-							var src = "http://tc22.huygens.knaw.nl/adore-djatoka/images/blank.gif";
+							var src = "https://tomcat.tiler01.huygens.knaw.nl/adore-djatoka/images/blank.gif";
 							if (djatoka_x >= 0 && djatoka_y >= 0) {
 								// djatoka mods
 								src = this.server + "?url_ver=Z39.88-2004&rft_id=" + this.images[n].src + "&svc_id=" + this.svc_id
